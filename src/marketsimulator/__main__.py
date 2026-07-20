@@ -1,8 +1,8 @@
 import sys
 import logging
 
-from marketpulse.config.settings import settings
-from marketpulse.utils.logging import setup_logging
+from marketsimulator.config.settings import settings
+from marketsimulator.utils.logging import setup_logging
 
 logger = logging.getLogger(__name__)
 
