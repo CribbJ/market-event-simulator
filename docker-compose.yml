@@ -1,0 +1,15 @@
+services:
+  marketsimulator:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: market-event-simulator
+
+    env_file: 
+      - .env
+
+    volumes:
+      - ./config:/marketsimulator/config:ro
+      - ./data:/marketsimulator/data
+      - ./logs:/marketsimulator/logs
