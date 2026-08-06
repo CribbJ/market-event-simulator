@@ -4,6 +4,8 @@ import logging
 from marketsimulator.config.settings import settings
 from marketsimulator.utils.logging import setup_logging
 
+from marketsimulator.main import TradeGenerator
+
 logger = logging.getLogger(__name__)
 
 def main() -> int:
