@@ -4,6 +4,9 @@ import logging
 from marketsimulator.config.settings import settings
 from marketsimulator.utils.logging import setup_logging
 
+from marketsimulator.commands.batch import run_batch
+from marketsimulator.commands.stream import run_stream
+
 
 logger = logging.getLogger(__name__)
 
