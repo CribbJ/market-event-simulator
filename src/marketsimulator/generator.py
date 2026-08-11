@@ -24,6 +24,18 @@ BASE_PRICES = {
 QUANTITY = [10, 25, 50, 100, 200, 500, 1000]
 
 class TradeGenerator:
+    """Generate synthetic trade events with realistic timing and values.
+
+    The generator outputs ``Trade`` objects with timestamps, symbol-specific
+    base prices with small random jitter, order quantities, 
+    random side (buy/sell) selection, and fees.
+
+    Args:
+        num_traders (int): Upper bound for random trader IDs.
+        mean_ms_between_trades (float): Average arrival time between trades in
+            milliseconds.
+        seed (int | None): Optional seed for deterministic output.
+    """
 
     def __init__(self, num_traders: int = 50, mean_ms_between_trades: float = 50, seed: int | None = None):
         self.trade_id = 1

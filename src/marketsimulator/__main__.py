@@ -11,6 +11,16 @@ from marketsimulator.commands.stream import run_stream
 logger = logging.getLogger(__name__)
 
 def build_parser() -> argparse.ArgumentParser:
+    """Create the CLI parser with subcommands for batch and stream modes.
+
+    The returned parser defines application metadata and two
+    subcommands:
+    - ``batch`` for generating historic trade output files.
+    - ``stream`` for publishing synthetic trades to Kafka.
+
+    Returns:
+        argparse.ArgumentParser: Configured top-level argument parser.
+    """
     parser = argparse.ArgumentParser(prog="marketsimulator", description="Synthetic trade data generator")
     subparsers = parser.add_subparsers(dest="command")
     
