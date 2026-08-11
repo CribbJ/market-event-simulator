@@ -1,4 +1,5 @@
 # stream.py
+import argparse
 
-def run_stream():
+def run_stream(args):
     pass
