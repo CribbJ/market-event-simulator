@@ -56,7 +56,6 @@ def main() -> int:
         if args.command == "batch":
             logger.info("Running batch generation: %s trades", args.num_trades)
             run_batch(args)
-            
         elif args.command == "stream":
             logger.info("Running stream generation for %ss", args.duration)
             run_stream(args)
