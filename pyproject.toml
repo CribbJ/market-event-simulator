@@ -5,6 +5,22 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "marketsimulator"
 version = "0.1.0"
+dependencies = [
+    "pydantic>=2.13",
+    "pydantic-settings>=2.14",
+    "pandas",
+    "pyarrow",
+    "confluent-kafka",
+    "python-dotenv",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-cov",
+    "black",
+    "ruff",
+]
 
 [tool.setuptools.packages.find]
 where = ["src"]
