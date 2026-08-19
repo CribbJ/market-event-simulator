@@ -12,6 +12,7 @@ dependencies = [
     "pyarrow",
     "confluent-kafka",
     "python-dotenv",
+    "dask[dataframe]>=2026.7.1"
 ]
 
 [project.optional-dependencies]

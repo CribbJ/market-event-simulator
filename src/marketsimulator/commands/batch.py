@@ -59,4 +59,4 @@ def run_batch(args: argparse.Namespace, logger: Logger) -> None:
     out_dir = Path(args.out_dir)
     write_parquet(trades, out_dir)
     
-    logger.info(f"Generated {len(trades)} trades ({args.format}) -> {out_dir}")
+    logger.info(f"Generated {len(trades)} trades -> {out_dir}")
