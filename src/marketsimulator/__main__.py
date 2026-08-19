@@ -28,9 +28,8 @@ def build_parser() -> argparse.ArgumentParser:
     batch_p.add_argument("--num-trades", type=int, help="How many trades to generate in this run.")
     batch_p.add_argument("--mean-ms-between-trades", type=float, help="Controls how tightly packed timestamps are across your simulated historic window.")
     batch_p.add_argument("--days-ago", type=int, default=1, help="How far back the simulated historic window starts.")
-    batch_p.add_argument("--out-dir", type=str, default="data/historic", help="Where the parquet (or JSON) files get written.")
+    batch_p.add_argument("--out-dir", type=str, default="data/historic", help="Where the parquet files get written.")
     batch_p.add_argument("--seed", type=int, help="Makes the batch reproducible.")
-    batch_p.add_argument("--format", choices=["parquet", "json", "csv"], default="parquet", help="Choose between parquet, json or csv outputs (Default parquet).")
     
     stream_p = subparsers.add_parser("stream", help="Stream trades into Kafka")
     stream_p.add_argument("--duration", type=float, default=60, help="Seconds to stream for.")
