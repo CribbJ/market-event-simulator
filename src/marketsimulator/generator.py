@@ -45,7 +45,11 @@ class TradeGenerator:
         self._rng = random.Random(seed)
 
     def generate(self) -> Trade:
-      
+        """_summary_
+
+        Returns:
+            Trade: _description_
+        """
         self.current_time += timedelta(
             # mean arrival rate: ~20 trades/sec => average 50ms(default) between trades,
             # but with realistic bursts and gaps

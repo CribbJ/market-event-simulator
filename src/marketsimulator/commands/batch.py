@@ -1,9 +1,9 @@
 # batch.py
 import json
 import argparse
+import logging
 from pathlib import Path
 from datetime import datetime, timedelta
-from logging import Logger
 from typing import List
 
 import dask.dataframe as dd
@@ -11,14 +11,16 @@ import pandas as pd
 
 from marketsimulator.generator import TradeGenerator
 
+logger = logging.getLogger(__name__)
+
 def generate_historic_trades(
-    num_trades: int, 
+    num_trades: int,
     start_time: datetime | None,
     num_traders: int = 50,
     mean_ms_between_trades: float = 50,
     seed: int | None = 42
 ) -> List:
-    
+
     gen = TradeGenerator(
         num_traders=num_traders,
         mean_ms_between_trades=mean_ms_between_trades,
@@ -47,7 +49,7 @@ def write_parquet(trades: List, out_dir: Path, npartitions: int = 4) -> None:
     )
     
 
-def run_batch(args: argparse.Namespace, logger: Logger) -> None:
+def run_batch(args: argparse.Namespace) -> None:
     start_time = datetime.now() - timedelta(days=args.days_ago)
     
     trades = generate_historic_trades(
@@ -59,4 +61,4 @@ def run_batch(args: argparse.Namespace, logger: Logger) -> None:
     out_dir = Path(args.out_dir)
     write_parquet(trades, out_dir)
     
-    logger.info(f"Generated {len(trades)} trades -> {out_dir}")
+    logger.info("Generated %s trades -> %s", len(trades), out_dir)
