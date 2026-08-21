@@ -21,14 +21,14 @@ def generate_historic_trades(
     seed: int | None = 42,
 ) -> List:
     """Generate a fixed batch of synthetic historic trades.
-
-    Creates trades using TradeGenerator, with timestamps from start_time (or "now") using
+    
+    Creates trades using TradeGenerator, with timestamps from start_time (or "now") using 
     randomised arrival gaps. Intended for producing reproducible, point-in-time "historic"
     dataset, rather than a live stream of data.
 
     Args:
         num_trades (int): Number of trades to generate
-        start_time (datetime | None): Timestamp the simulated clock begins. Defaults to the current time if not provided
+        start_time (datetime | None): Timestamp the simulated clock begins. Defaults to the current time if not provided.
         num_traders (int, optional): Size of the id pool. Defaults to 50.
         mean_ms_between_trades (float, optional): Average milliseconds between trades, sampled from exponential distribution. Defaults to 50.
         seed (int | None, optional): Seed for generators random state. Set for reproducible output. Defaults to 42.
@@ -52,13 +52,13 @@ def generate_historic_trades(
 # Bump nparitiotns up 1 every ~100k-500k
 def write_parquet(trades: List, out_dir: Path, npartitions: int = 4) -> None:
     """Write trades to specific output locations, as parquet files.
-
+    
     Converts trades to DataFrame and writes them out to out_dir, partitioned by symbol and trade date.
 
     Args:
         trades (List): Trades to write
         out_dir (Path): Output directory to partitioned parquet files.
-        npartitions (int, optional): _description_. Defaults to 4.
+        npartitions (int, optional): Number of disk paritions to split the DataFrame into before writing. Defaults to 4.
     """
     df = pd.DataFrame(t.model_dump() for t in trades)
     df["price"] = df["price"].astype(float)
@@ -77,8 +77,9 @@ def write_parquet(trades: List, out_dir: Path, npartitions: int = 4) -> None:
 
 def run_batch(args: argparse.Namespace) -> None:
     """Run the 'batch' CLI command: generate and write historic trades.
-
-    Intended as the entry point called from __main__.py command.
+    
+    Generates the number of intended historic trade via generate_historic_trades, and writes them 
+    to disk via write_parquet. Intended as the entry point called from __main__.py command.
 
     Args:
         args (argparse.Namespace): Parsed CLI arguments for batch command.
