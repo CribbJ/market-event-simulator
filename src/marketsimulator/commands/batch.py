@@ -1,5 +1,4 @@
 # batch.py
-import json
 import argparse
 import logging
 from pathlib import Path
