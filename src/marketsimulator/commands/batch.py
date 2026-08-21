@@ -21,8 +21,8 @@ def generate_historic_trades(
     seed: int | None = 42,
 ) -> List:
     """Generate a fixed batch of synthetic historic trades.
-    
-    Creates trades using TradeGenerator, with timestamps from start_time (or "now") using 
+
+    Creates trades using TradeGenerator, with timestamps from start_time (or "now") using
     randomised arrival gaps. Intended for producing reproducible, point-in-time "historic"
     dataset, rather than a live stream of data.
 
@@ -49,16 +49,15 @@ def generate_historic_trades(
     return [gen.generate() for _ in range(num_trades)]
 
 
-# Bump nparitiotns up 1 every ~100k-500k
 def write_parquet(trades: List, out_dir: Path, npartitions: int = 4) -> None:
     """Write trades to specific output locations, as parquet files.
-    
+
     Converts trades to DataFrame and writes them out to out_dir, partitioned by symbol and trade date.
 
     Args:
         trades (List): Trades to write
         out_dir (Path): Output directory to partitioned parquet files.
-        npartitions (int, optional): Number of disk paritions to split the DataFrame into before writing. Defaults to 4.
+        npartitions (int, optional): Number of disk paritions to split the DataFrame into before writing. Bump ``npartitions`` up 1 every ~100k-500k. Defaults to 4.
     """
     df = pd.DataFrame(t.model_dump() for t in trades)
     df["price"] = df["price"].astype(float)
@@ -77,8 +76,8 @@ def write_parquet(trades: List, out_dir: Path, npartitions: int = 4) -> None:
 
 def run_batch(args: argparse.Namespace) -> None:
     """Run the 'batch' CLI command: generate and write historic trades.
-    
-    Generates the number of intended historic trade via generate_historic_trades, and writes them 
+
+    Generates the number of intended historic trade via generate_historic_trades, and writes them
     to disk via write_parquet. Intended as the entry point called from __main__.py command.
 
     Args:

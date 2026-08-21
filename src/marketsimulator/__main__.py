@@ -30,6 +30,7 @@ def build_parser() -> argparse.ArgumentParser:
     batch_p.add_argument("--days-ago", type=int, default=1, help="How far back the simulated historic window starts.")
     batch_p.add_argument("--out-dir", type=str, default="data/historic", help="Where the parquet files get written.")
     batch_p.add_argument("--seed", type=int, help="Makes the batch reproducible.")
+    batch_p.add_argument("--npartitions", type=int, default=4, help="Number of disk paritions to split the DataFrame into before writing. Bump `npartitions` up 1 every ~100k-500k.")
     
     stream_p = subparsers.add_parser("stream", help="Stream trades into Kafka")
     stream_p.add_argument("--duration", type=float, default=60, help="Seconds to stream for.")
