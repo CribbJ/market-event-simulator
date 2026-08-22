@@ -61,3 +61,10 @@ docker compose run -rm marketsimulator batch --num-trades 50 --out-dir data/hist
 - `docker compose run --rm` runs a one-off command and removes the container afterward - suitable for batch jobs.
 - The `./data` directory is mounted into the container, so the output Parquet files persist on the host machine, after the container exits.
 - An `.env` file is expected at project root (see `env_file` in `docker-compose.yml`). Use the **.env.example** file, as a template.
+
+## Development
+```bash
+ruff check .    #linting
+ruff format .   #formatting
+pytest          #run tests
+```
