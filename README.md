@@ -50,3 +50,14 @@ python -m marketsimulator batch \
 ### Stream: publish live trades to Kafka
 
 > ⚠️ **Not yet built.** The `stream` command is planned but not implemented.
+
+## Running with Docker
+The project ships with `Dockerfile` and `docker-compose.yml`.
+
+```bash
+docker compose build
+docker compose run -rm marketsimulator batch --num-trades 50 --out-dir data/historic
+```
+- `docker compose run --rm` runs a one-off command and removes the container afterward - suitable for batch jobs.
+- The `./data` directory is mounted into the container, so the output Parquet files persist on the host machine, after the container exits.
+- An `.env` file is expected at project root (see `env_file` in `docker-compose.yml`). Use the **.env.example** file, as a template.
