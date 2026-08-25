@@ -10,7 +10,7 @@ def setup_logging(level: str) -> None:
     log_level = getattr(
         logging,
         level.upper(),
-        20,
+        logging.INFO,
     )
 
     logging.basicConfig(

@@ -1,6 +1,8 @@
 # stream.py
 import argparse
-from logging import Logger
+import logging
 
-def run_stream(args: argparse.Namespace, logger: Logger):
+logger = logging.getLogger(__name__)
+
+def run_stream(args: argparse.Namespace):
     pass

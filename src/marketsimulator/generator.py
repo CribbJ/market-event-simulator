@@ -45,7 +45,16 @@ class TradeGenerator:
         self._rng = random.Random(seed)
 
     def generate(self) -> Trade:
-      
+        """Generate the next synthetic trade.
+        
+        Advances the simulated clock by random inter-arrival gap,
+        then builds a Trade with a randomly selected symbol,
+        jittered price, quantity, side, trader and derived
+        fees.
+
+        Returns:
+            Trade: The generated trade.
+        """
         self.current_time += timedelta(
             # mean arrival rate: ~20 trades/sec => average 50ms(default) between trades,
             # but with realistic bursts and gaps
