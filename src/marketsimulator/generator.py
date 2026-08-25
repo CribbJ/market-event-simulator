@@ -43,6 +43,10 @@ class TradeGenerator:
         self.num_traders = num_traders
         self._lambd = 1 / mean_ms_between_trades
         self._rng = random.Random(seed)
+        
+    def next_arrival_gap_ms(self) -> float:
+        """Sample the next inter-arrival gap in milliseconds, without advancing state."""
+        return self._rng.expovariate(self._lambd)
 
     def generate(self) -> Trade:
         """Generate the next synthetic trade.
