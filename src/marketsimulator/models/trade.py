@@ -4,9 +4,11 @@ from enum import Enum
 
 from pydantic import BaseModel
 
+
 class Side(str, Enum):
     BUY = "BUY"
     SELL = "SELL"
+
 
 class Trade(BaseModel):
     trade_id: int
