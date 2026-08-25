@@ -35,9 +35,9 @@ def build_parser() -> argparse.ArgumentParser:
     
     stream_p = subparsers.add_parser("stream", help="Stream trades into Kafka")
     stream_p.add_argument("--duration", type=float, default=60, help="Seconds to stream for.")
-    stream_p.add_argument("--bootstrap-servers", type=str, default="kafka:9092", help="Let's you overide if running scripts outside Docker container.")
-    stream_p.add_argument("--topic", type=str, default="trades")
-    stream_p.add_argument("--mean-ms-between-trades", type=float, help="How dense trades are within the duration.")
+    # stream_p.add_argument("--bootstrap-servers", type=str, default="kafka:9092", help="Let's you overide if running scripts outside Docker container.")
+    # stream_p.add_argument("--topic", type=str, default="trades")
+    stream_p.add_argument("--mean-ms-between-trades", type=float, default=50, help="How dense trades are within the duration.")
     
     return parser
 
@@ -60,7 +60,7 @@ def main() -> int:
             run_batch(args)
         elif args.command == "stream":
             logger.info("Running stream generation for %ss", args.duration)
-            run_stream(args)
+            run_stream(args, settings)
         else:
             parser.print_help()
             return 1
