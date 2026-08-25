@@ -12,7 +12,7 @@ It supports two modes:
 - **Poisson style arrival timing** - trade timestamps use exponentially distributed inter-arrival gaps (`random.expovariate`) rather than fixed interval, producing realistic bursts and lulls, instead of evenly spaced trades.
 - **Price jitter around base price** - Each symbol has a rough, static base price. Trades vary +/-1% around it, so prices vary.
 - **Round-lot quantity buckets** - trade sizes are drawn from common real-world lot sizes (10, 25, 50, 100, 200, 500, 1000) rather than a uniform spread across integers.
-- **Fees derived from notional value** - fees are calculated as fixed basis-point rate (0.05%) of notional vale (`price * quantity`).
+- **Fees derived from notional value** - fees are calculated as fixed basis-point rate (0.05%) of notional value (`price * quantity`).
 - **Reproducability** - each `TradeGenerator` instance owns a `random.Random` instance. Pass `seed` to make the output deterministic, or omit for live/non-deterministic streaming.
 
 ## Installation
