@@ -86,7 +86,11 @@ def run_batch(args: argparse.Namespace) -> None:
     start_time = datetime.now() - timedelta(days=args.days_ago)
 
     trades = generate_historic_trades(
-        num_trades=args.num_trades, start_time=start_time, seed=args.seed
+        num_trades=args.num_trades,
+        start_time=start_time,
+        num_traders=args.num_traders,
+        mean_ms_between_trades=args.mean_ms_between_trades,
+        seed=args.seed,
     )
 
     out_dir = Path(args.out_dir)
